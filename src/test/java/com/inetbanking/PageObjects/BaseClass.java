@@ -78,7 +78,11 @@ public class BaseClass {
 		
 		if (browserName.equalsIgnoreCase("chrome"))
 		{
+			
 			WebDriverManager.chromedriver().setup();
+			ChromeOptions options = new ChromeOptions();
+			//options.addArguments("--incognito");
+			
 			options.addArguments("headless");
 			ChromeDriverService service = new ChromeDriverService.Builder()
 	                .usingAnyFreePort()
@@ -86,7 +90,9 @@ public class BaseClass {
 			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 			driver=new ChromeDriver(service,options);
-				
+			
+		//	driver=new ChromeDriver();	
+		
 		}
 		
 		else if(browserName.equals("firefox"))
