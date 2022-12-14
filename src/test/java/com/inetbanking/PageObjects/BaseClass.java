@@ -79,7 +79,14 @@ public class BaseClass {
 		if (browserName.equalsIgnoreCase("chrome"))
 		{
 			WebDriverManager.chromedriver().setup();
-			driver=new ChromeDriver();	
+			options.addArguments("headless");
+			ChromeDriverService service = new ChromeDriverService.Builder()
+	                .usingAnyFreePort()
+	                .build();
+			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+			driver=new ChromeDriver(service,options);
+				
 		}
 		
 		else if(browserName.equals("firefox"))
